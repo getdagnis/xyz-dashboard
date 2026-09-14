@@ -1,11 +1,17 @@
+import { useState } from 'react'
 import CustomerOverviewCard from '../../modules/account/components/CustomerOverviewCard/CustomerOverviewCard'
 import RecentOrdersCard from '../../modules/commerce/components/RecentOrdersCard/RecentOrdersCard'
 import RecentNotificationsCard from '../../modules/notifications/components/RecentNotificationsCard/RecentNotificationsCard'
 import GlobalSearch from '../../modules/search/components/GlobalSearch/GlobalSearch'
+import SearchResults from '../../modules/search/components/SearchResults/SearchResults'
+import { getPreviewSearchGroups } from '../../modules/search/data/searchPreviewFixture'
 import OpenServiceTicketsCard from '../../modules/service-desk/components/OpenServiceTicketsCard/OpenServiceTicketsCard'
 import styles from './DashboardPage.module.sass'
 
 export default function DashboardPage() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const isSearching = searchQuery.length > 0
+
   return (
     <div className={styles.page}>
       <header className={styles.introduction}>
@@ -13,13 +19,19 @@ export default function DashboardPage() {
         <h1 className={styles.title}>Good morning, Jordan</h1>
         <p className={styles.subtitle}>Here’s the latest activity across your XYZ services</p>
       </header>
-      <GlobalSearch />
-      <div className={styles.cards}>
-        <CustomerOverviewCard />
-        <RecentNotificationsCard />
-      </div>
-      <OpenServiceTicketsCard />
-      <RecentOrdersCard />
+      <GlobalSearch value={searchQuery} onChange={setSearchQuery} />
+      {isSearching ? (
+        <SearchResults query={searchQuery} groups={getPreviewSearchGroups(searchQuery)} />
+      ) : (
+        <>
+          <div className={styles.cards}>
+            <CustomerOverviewCard />
+            <RecentNotificationsCard />
+          </div>
+          <OpenServiceTicketsCard />
+          <RecentOrdersCard />
+        </>
+      )}
     </div>
   )
 }

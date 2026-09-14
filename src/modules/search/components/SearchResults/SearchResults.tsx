@@ -1,0 +1,62 @@
+import { useId } from 'react';
+import type { SearchResultGroup } from '../../types';
+import styles from './SearchResults.module.sass';
+
+interface SearchResultsProps {
+  query: string;
+  groups: readonly SearchResultGroup[];
+}
+
+function GroupContent({ group }: { group: SearchResultGroup }) {
+  if (group.state === 'loading') {
+    return <p className={styles.state}>Loading results…</p>;
+  }
+
+  if (group.state === 'error') {
+    return <p className={styles.state}>Unable to load results from this source.</p>;
+  }
+
+  if (group.state === 'empty' || group.results.length === 0) {
+    return <p className={styles.state}>No results from this source.</p>;
+  }
+
+  return (
+    <ul className={styles.list}>
+      {group.results.map((result) => (
+        <li key={result} className={styles.result}>
+          {result}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function SearchResults({ query, groups }: SearchResultsProps) {
+  const headingId = useId();
+
+  return (
+    <section className={styles.surface} aria-labelledby={headingId}>
+      <h1 id={headingId} className={styles.visuallyHidden}>
+        Search results for “{query}”
+      </h1>
+      {groups.length === 0 ? (
+        <p className={styles.noResults}>No results found. Try 'VPN'</p>
+      ) : (
+        <div className={styles.groups}>
+          {groups.map((group) => {
+            const groupHeadingId = `${headingId}-${group.id}`;
+
+            return (
+              <section key={group.id} className={styles.group} aria-labelledby={groupHeadingId}>
+                <h2 id={groupHeadingId} className={styles.groupHeading}>
+                  {group.label}
+                </h2>
+                <GroupContent group={group} />
+              </section>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}

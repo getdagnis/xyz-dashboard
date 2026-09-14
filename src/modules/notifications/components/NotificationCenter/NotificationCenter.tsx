@@ -1,24 +1,19 @@
-import { useState } from 'react'
-import {
-  Dialog,
-  Modal,
-  ModalOverlay,
-  ToggleButton,
-  ToggleButtonGroup,
-} from 'react-aria-components'
-import IconButton from '../../../../design-system/components/IconButton/IconButton'
-import Card from '../../../../design-system/components/Card/Card'
-import { notifications } from '../../data/notifications'
-import styles from './NotificationCenter.module.sass'
+import { useState } from 'react';
+import { Dialog, Modal, ModalOverlay, ToggleButton, ToggleButtonGroup } from 'react-aria-components';
+import IconButton from '../../../../design-system/components/IconButton/IconButton';
+import Card from '../../../../design-system/components/Card/Card';
+import { useNotifications } from '../../NotificationsContext';
+import styles from './NotificationCenter.module.sass';
 
 interface NotificationCenterProps {
-  isOpen: boolean
-  onOpenChange: (isOpen: boolean) => void
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
 }
 
 export default function NotificationCenter({ isOpen, onOpenChange }: NotificationCenterProps) {
-  const [filter, setFilter] = useState<'all' | 'unread'>('all')
-  const visibleNotifications = notifications.filter((notification) => filter === 'all' || notification.unread)
+  const [filter, setFilter] = useState<'all' | 'unread'>('all');
+  const { markAsRead, notifications } = useNotifications();
+  const visibleNotifications = notifications.filter((notification) => filter === 'all' || notification.unread);
 
   return (
     <ModalOverlay className={styles.overlay} isDismissable isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -36,7 +31,7 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
               </header>
               <Card
                 eyebrow="Notifications"
-                title="Notifications"
+                title="All notifications"
                 headerAction={
                   <ToggleButtonGroup
                     className={styles.filters}
@@ -46,8 +41,12 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
                     selectedKeys={[filter]}
                     onSelectionChange={(keys) => setFilter(keys.has('unread') ? 'unread' : 'all')}
                   >
-                    <ToggleButton className={styles.filter} id="unread">Unread</ToggleButton>
-                    <ToggleButton className={styles.filter} id="all">All</ToggleButton>
+                    <ToggleButton className={styles.filter} id="unread">
+                      Unread
+                    </ToggleButton>
+                    <ToggleButton className={styles.filter} id="all">
+                      All
+                    </ToggleButton>
                   </ToggleButtonGroup>
                 }
               >
@@ -56,6 +55,23 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
                     <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
                       <span className={styles.dot} aria-hidden="true" />
                       <span>{notification.text}</span>
+                      {notification.unread && (
+                        <IconButton
+                          className={styles.markRead}
+                          aria-label={`Mark ${notification.text} as read`}
+                          onPress={() => markAsRead(notification.id)}
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.75"
+                            aria-hidden="true"
+                          >
+                            <path d="m5 12 4 4L19 6" />
+                          </svg>
+                        </IconButton>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -65,5 +81,5 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
         </Dialog>
       </Modal>
     </ModalOverlay>
-  )
+  );
 }

@@ -6,12 +6,18 @@
   min-width: 0
   padding: 0.5rem var(--space-inline)
   background: var(--color-surface)
-  border: 0.1rem solid var(--color-border-default)
+  border: 2px solid var(--color-border-default)
   border-radius: var(--radius-surface)
 
   &:focus-within
     outline: var(--focus-width) var(--focus-style) var(--color-focus)
     outline-offset: var(--focus-offset)
+
+  &:not([data-empty])
+    border-color: var(--color-primary)
+
+    .input
+      color: var(--color-primary)
 
   &[data-empty] .clear
     display: none
@@ -43,18 +49,23 @@
     font-weight: var(--font-weight-medium)
     opacity: 1
 
+  &:focus::placeholder
+    color: var(--color-text-muted)
+
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration
     appearance: none
 
 .clear
+  display: inline-grid
+  place-items: center
+  width: 2.75rem
   min-height: 2.75rem
-  padding: 0.5rem
+  padding: 0
   border: 0
   border-radius: var(--radius-control)
   background: var(--color-action-ghost)
-  color: var(--color-text-control)
-  font-size: var(--font-size-sm)
+  color: var(--color-primary)
   cursor: pointer
 
   &[data-hovered]
@@ -66,6 +77,10 @@
   &[data-focus-visible]
     outline: var(--focus-width) var(--focus-style) var(--color-focus)
     outline-offset: var(--focus-offset)
+
+.clearIcon
+  width: 1.5rem
+  height: 1.5rem
 
 .details
   display: inline-flex
@@ -90,3 +105,6 @@
 @media (max-width: 360px)
   .field
     padding-inline: 0.5rem
+
+  .control
+    gap: 0.25rem

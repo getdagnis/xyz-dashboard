@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { ToggleButton, ToggleButtonGroup } from 'react-aria-components'
 import Card from '../../../../design-system/components/Card/Card'
-import { notifications } from '../../data/notifications'
+import { useNotifications } from '../../NotificationsContext'
 import styles from './RecentNotificationsCard.module.sass'
 
 export default function RecentNotificationsCard() {
   const [filter, setFilter] = useState<'all' | 'unread'>('all')
+  const { notifications } = useNotifications()
   const visibleNotifications = notifications
     .filter((notification) => filter === 'all' || notification.unread)
     .slice(0, 3)
