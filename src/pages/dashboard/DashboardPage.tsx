@@ -14,6 +14,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.hero} aria-hidden="true" />
       <header className={styles.introduction}>
         <time className={styles.date} dateTime="2026-09-14">Monday, 14 September 2026</time>
         <h1 className={styles.title}>Good morning, Jordan</h1>
