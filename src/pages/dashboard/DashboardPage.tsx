@@ -10,7 +10,7 @@ import styles from './DashboardPage.module.sass'
 
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('')
-  const isSearching = searchQuery.length > 0
+  const isSearching = searchQuery.trim().length > 0
 
   return (
     <div className={styles.page}>

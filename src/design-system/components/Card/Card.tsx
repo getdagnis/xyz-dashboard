@@ -7,13 +7,14 @@ export interface CardProps {
   title: string
   headerAction?: ReactNode
   children: ReactNode
+  className?: string
 }
 
-export default function Card({ eyebrow, title, headerAction, children }: CardProps) {
+export default function Card({ eyebrow, title, headerAction, children, className }: CardProps) {
   const headingId = useId()
 
   return (
-    <section className={styles.card} aria-labelledby={headingId}>
+    <section className={[styles.card, className].filter(Boolean).join(' ')} aria-labelledby={headingId}>
       <header className={styles.header}>
         <div>
           {eyebrow && <p className={styles.eyebrow}>{eyebrow}</p>}

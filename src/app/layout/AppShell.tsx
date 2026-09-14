@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { ReactNode } from 'react'
 import AppHeader from './AppHeader'
 import NotificationCenter from '../../modules/notifications/components/NotificationCenter/NotificationCenter'
@@ -10,19 +9,23 @@ interface AppShellProps {
 }
 
 export default function AppShell({ children }: AppShellProps) {
-  const [isNotificationCenterOpen, setIsNotificationCenterOpen] = useState(false)
-  const { unreadCount } = useNotifications()
+  const {
+    isNotificationCenterOpen,
+    onNotificationCenterOpenChange,
+    openNotificationCenter,
+    unreadCount,
+  } = useNotifications()
 
   return (
     <div className={styles.shell}>
       <AppHeader
         unreadCount={unreadCount}
-        onOpenNotifications={() => setIsNotificationCenterOpen(true)}
+        onOpenNotifications={openNotificationCenter}
       />
       <main id="main-content" className={`${styles.container} ${styles.main}`}>{children}</main>
       <NotificationCenter
         isOpen={isNotificationCenterOpen}
-        onOpenChange={setIsNotificationCenterOpen}
+        onOpenChange={onNotificationCenterOpenChange}
       />
     </div>
   )

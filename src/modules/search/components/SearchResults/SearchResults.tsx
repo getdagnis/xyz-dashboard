@@ -36,11 +36,11 @@ export default function SearchResults({ query, groups }: SearchResultsProps) {
 
   return (
     <section className={styles.surface} aria-labelledby={headingId}>
-      <h1 id={headingId} className={styles.visuallyHidden}>
+      <h2 id={headingId} className={styles.visuallyHidden}>
         Search results for “{query}”
-      </h1>
+      </h2>
       {groups.length === 0 ? (
-        <p className={styles.noResults}>No results found. Try 'VPN'</p>
+        <p className={styles.noResults}>No results found. Try 'VPN'.</p>
       ) : (
         <div className={styles.groups}>
           {groups.map((group) => {

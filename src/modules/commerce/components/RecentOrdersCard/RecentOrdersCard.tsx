@@ -1,7 +1,7 @@
-import Button from '../../../../design-system/components/Button/Button'
-import Card from '../../../../design-system/components/Card/Card'
-import Chip from '../../../../design-system/components/Chip/Chip'
-import styles from './RecentOrdersCard.module.sass'
+import Button from '../../../../design-system/components/Button/Button';
+import Card from '../../../../design-system/components/Card/Card';
+import Chip from '../../../../design-system/components/Chip/Chip';
+import styles from './RecentOrdersCard.module.sass';
 
 const orders = [
   {
@@ -10,7 +10,7 @@ const orders = [
     shipmentStatus: 'Processing',
     shipmentTone: 'neutral' as const,
     total: '€18,240.00',
-    date: 'Sep 6, 2026',
+    date: 'Sep 10, 2026',
     dateTime: '2026-09-06',
   },
   {
@@ -19,7 +19,7 @@ const orders = [
     shipmentStatus: 'Shipped',
     shipmentTone: 'success' as const,
     total: '€6,720.00',
-    date: 'Sep 5, 2026',
+    date: 'Sep 7, 2026',
     dateTime: '2026-09-05',
   },
   {
@@ -40,7 +40,7 @@ const orders = [
     date: 'Aug 18, 2026',
     dateTime: '2026-08-18',
   },
-]
+];
 
 export default function RecentOrdersCard() {
   return (
@@ -62,7 +62,9 @@ export default function RecentOrdersCard() {
                 <tr key={order.id}>
                   <td>{order.id}</td>
                   <td>{order.summary}</td>
-                  <td><Chip tone={order.shipmentTone}>{order.shipmentStatus}</Chip></td>
+                  <td>
+                    <Chip tone={order.shipmentTone}>{order.shipmentStatus}</Chip>
+                  </td>
                   <td>{order.total}</td>
                   <td>{order.date}</td>
                 </tr>
@@ -91,9 +93,11 @@ export default function RecentOrdersCard() {
         </ul>
       </Card>
       <div className={styles.actions}>
-        <Button type="button" variant="secondary">Order history</Button>
+        <Button type="button" variant="secondary">
+          Order history
+        </Button>
         <Button type="button">Track order</Button>
       </div>
     </div>
-  )
+  );
 }

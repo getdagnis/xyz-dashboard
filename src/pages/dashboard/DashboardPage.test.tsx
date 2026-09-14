@@ -54,6 +54,16 @@ describe('DashboardPage search preview', () => {
 
     await user.type(screen.getByLabelText('Global search'), 'printer')
 
-    expect(screen.getByText('No results found')).toBeTruthy()
+    expect(screen.getByText("No results found. Try 'VPN'.")).toBeTruthy()
+  })
+
+  it('keeps the dashboard visible for a whitespace-only query', async () => {
+    const user = userEvent.setup()
+    renderDashboard()
+
+    await user.type(screen.getByLabelText('Global search'), '   ')
+
+    expect(screen.getByRole('heading', { name: 'Customer overview' })).toBeTruthy()
+    expect(screen.queryByText("No results found. Try 'VPN'.")).toBeNull()
   })
 })

@@ -5,6 +5,9 @@ export interface NotificationsContextValue {
   notifications: NotificationItem[]
   unreadCount: number
   markAsRead: (notificationId: string) => void
+  isNotificationCenterOpen: boolean
+  openNotificationCenter: () => void
+  onNotificationCenterOpenChange: (isOpen: boolean) => void
 }
 
 export const NotificationsContext = createContext<NotificationsContextValue | null>(null)
