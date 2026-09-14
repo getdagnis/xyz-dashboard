@@ -1,14 +1,19 @@
 import { cleanup, render, screen } from '@testing-library/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 import { NotificationsProvider } from '../../modules/notifications/NotificationsProvider'
 import DashboardPage from './DashboardPage'
 
 function renderDashboard() {
+  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+
   return render(
-    <NotificationsProvider>
-      <DashboardPage />
-    </NotificationsProvider>,
+    <QueryClientProvider client={queryClient}>
+      <NotificationsProvider>
+        <DashboardPage />
+      </NotificationsProvider>
+    </QueryClientProvider>,
   )
 }
 

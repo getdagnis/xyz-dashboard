@@ -12,7 +12,7 @@ interface NotificationCenterProps {
 
 export default function NotificationCenter({ isOpen, onOpenChange }: NotificationCenterProps) {
   const [filter, setFilter] = useState<'all' | 'unread'>('all');
-  const { markAsRead, notifications } = useNotifications();
+  const { isNotificationsError, isNotificationsLoading, markAsRead, notifications } = useNotifications();
   const visibleNotifications = notifications.filter((notification) => filter === 'all' || notification.unread);
 
   return (
@@ -50,9 +50,11 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
                   </ToggleButtonGroup>
                 }
               >
-                {visibleNotifications.length === 0 ? (
-                  <p className={styles.empty}>No unread notifications.</p>
-                ) : (
+                {isNotificationsLoading ? <p className={styles.empty}>Loading notifications…</p> : null}
+                {isNotificationsError ? <p className={styles.empty}>Unable to load notifications.</p> : null}
+                {!isNotificationsLoading && !isNotificationsError && visibleNotifications.length === 0 ? (
+                  <p className={styles.empty}>{filter === 'unread' ? 'No unread notifications.' : 'No notifications.'}</p>
+                ) : !isNotificationsLoading && !isNotificationsError ? (
                   <ul className={styles.list}>
                     {visibleNotifications.map((notification) => (
                       <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
@@ -78,7 +80,7 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
                       </li>
                     ))}
                   </ul>
-                )}
+                ) : null}
               </Card>
             </>
           )}

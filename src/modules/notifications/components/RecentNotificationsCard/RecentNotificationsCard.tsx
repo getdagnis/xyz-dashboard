@@ -7,7 +7,7 @@ import styles from './RecentNotificationsCard.module.sass'
 
 export default function RecentNotificationsCard() {
   const [filter, setFilter] = useState<'all' | 'unread'>('all')
-  const { notifications, openNotificationCenter } = useNotifications()
+  const { notifications, isNotificationsError, isNotificationsLoading, openNotificationCenter } = useNotifications()
   const visibleNotifications = notifications
     .filter((notification) => filter === 'all' || notification.unread)
     .slice(0, 3)
@@ -30,11 +30,13 @@ export default function RecentNotificationsCard() {
           <ToggleButton className={styles.filter} id="all">All</ToggleButton>
         </ToggleButtonGroup>
       }
-    >
+      >
       <div className={styles.content}>
-        {visibleNotifications.length === 0 ? (
-          <p className={styles.empty}>No unread notifications.</p>
-        ) : (
+        {isNotificationsLoading ? <p className={styles.empty}>Loading notifications…</p> : null}
+        {isNotificationsError ? <p className={styles.empty}>Unable to load notifications.</p> : null}
+        {!isNotificationsLoading && !isNotificationsError && visibleNotifications.length === 0 ? (
+          <p className={styles.empty}>{filter === 'unread' ? 'No unread notifications.' : 'No notifications.'}</p>
+        ) : !isNotificationsLoading && !isNotificationsError ? (
           <ul className={styles.list}>
             {visibleNotifications.map((notification) => (
               <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
@@ -46,7 +48,7 @@ export default function RecentNotificationsCard() {
               </li>
             ))}
           </ul>
-        )}
+        ) : null}
       </div>
       <div className={styles.footer}>
         <Button variant="action" onPress={openNotificationCenter}>View all</Button>

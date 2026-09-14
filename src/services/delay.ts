@@ -1,5 +1,5 @@
 // mocked delay interval
-const delayMs = 1000;
+const delayMs = 20000;
 
 export function delayed<T>(createValue: () => T, signal?: AbortSignal): Promise<T> {
   return new Promise((resolve, reject) => {

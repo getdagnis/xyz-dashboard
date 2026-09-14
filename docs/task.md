@@ -55,5 +55,3 @@ A sample JSON Token Package containing primitive and semantic tokens is provided
 • Clear steps to install dependencies and run the application locally (e.g., npm install && npm start).
 
 • Design Tokens & Brand Adherence: Explain how you structured your styles/variables to match the layout grids, color parameters, and conventions found in the design system guidelines.
-
-Sensitivity: Internal

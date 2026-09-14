@@ -10,25 +10,29 @@ export interface Customer {
 export interface ServiceTicket {
   id: string;
   subject: string;
-  status: string;
-  priority: string;
+  status: ServiceTicketStatus;
+  priority: ServiceTicketPriority;
   updated: string;
 }
 
 export interface RecentOrder {
   id: string;
   summary: string;
-  shipmentStatus: string;
+  shipmentStatus: ShipmentStatus;
   total: string;
   date: string;
   dateTime: string;
 }
 
-export interface Notification {
+export interface NotificationItem {
   id: string;
   text: string;
   unread: boolean;
 }
+
+export type ServiceTicketStatus = 'Processing' | 'Waiting approval' | 'Resolved';
+export type ServiceTicketPriority = 'High' | 'Medium' | 'Low';
+export type ShipmentStatus = 'Processing' | 'Shipped' | 'Delayed' | 'Delivered';
 
 export interface SearchResult {
   id: string;
@@ -103,7 +107,7 @@ export const orders: readonly RecentOrder[] = [
   },
 ];
 
-export const notifications: readonly Notification[] = [
+export const notifications: readonly NotificationItem[] = [
   { id: 'ticket-update', text: 'Ticket INC-24081 was updated by the service team', unread: true },
   { id: 'order-dispatched', text: 'Order ORD-10492 has been dispatched', unread: true },
   { id: 'request-approval', text: 'Request REQ-19803 is waiting for approval', unread: false },

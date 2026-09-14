@@ -13,7 +13,7 @@ The responsive dashboard currently includes:
 
 Reusable `Button`, `IconButton`, `Card` and `Chip` components support the interface. Non-interactive content uses semantic HTML, including description lists, tables, sections and lists.
 
-Dashboard data is currently static and will be moved behind independent mock services.
+Dashboard data is loaded through four independent typed mock services, so each dashboard section can load, fail or remain empty without blocking the others.
 
 ## 2. Global Search
 
@@ -38,7 +38,7 @@ The header opens a right-side Notification Center containing:
 
 The counter and subscribed views update immediately when a notification is marked as read.
 
-## Technical foundation
+## Technical structure
 
 * Vite
 * React
@@ -48,26 +48,21 @@ The counter and subscribed views update immediately when a notification is marke
 * TanStack Query
 * Vitest and React Testing Library
 
-The application is organized by portal modules. Shared visual components and tokens live in the design system, while account, commerce, service-desk, search and notification code remain within their respective domains.
+The application is organized by portal modules. Shared visual components and tokens live in the `design-system` module. `Account`, `commerce`, `service-desk`, `search` and `notifications` have their own respective ones.
 
-TanStack Query is installed for the upcoming mocked server-state integration. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
+TanStack Query provides the shared client-side cache for the dashboard mock-service integration. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
 
 ## Accessibility
 
-The UI targets WCAG 2.2 AA and currently includes:
+React Aria Components provide accessible keyboard interaction, control semantics and focus management for buttons, search, filters and the Notification Center dialog. Native semantic HTML is used for landmarks, headings, description lists, tables and result lists.
 
-* semantic landmarks and content structures;
-* keyboard-accessible React Aria controls;
-* visible focus states;
-* accessible control names;
-* modal focus management and dismissal;
-* sufficiently large interaction targets;
-* status meaning that does not depend on colour alone;
-* contrast-adjusted semantic colour tokens.
+Icon-only controls have accessible names, focus is visibly indicated, and status information is expressed through text rather than colour alone.
 
-Automated checks support, but do not replace, keyboard, zoom and screen-reader review.
+Axe DevTools was used during development to identify colour-contrast and other accessibility issues. After adjusting the semantic colour tokens and component markup, the tested application view reports **0 automatic issues** with WCAG 2.1 AA and Best Practices enabled.
 
-Reference: [Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/)
+Automated testing does not replace complete keyboard and screen-reader testing.
+
+Reference: [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG/)
 
 ## Run locally
 
@@ -92,13 +87,3 @@ Run the complete validation sequence with:
 ```bash
 npm run check
 ```
-
-## Remaining implementation
-
-* typed deterministic mock services;
-* independent dashboard queries and states;
-* approximately 300 ms search debounce;
-* three concurrent search queries;
-* obsolete-request cancellation and stale-result protection;
-* settled-result live announcements;
-* final responsive, keyboard and accessibility review.

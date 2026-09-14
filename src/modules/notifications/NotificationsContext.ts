@@ -1,9 +1,11 @@
 import { createContext, useContext } from 'react'
-import type { NotificationItem } from './data/notifications'
+import type { NotificationItem } from '../../services/mockData'
 
 export interface NotificationsContextValue {
-  notifications: NotificationItem[]
+  notifications: readonly NotificationItem[]
   unreadCount: number
+  isNotificationsLoading: boolean
+  isNotificationsError: boolean
   markAsRead: (notificationId: string) => void
   isNotificationCenterOpen: boolean
   openNotificationCenter: () => void

@@ -18,8 +18,8 @@ This roadmap records the implemented portal UI and the next integration work wit
 
 ## Dashboard integration
 
-* [ ] Fetch customer, tickets, orders and notifications
-* [ ] Independent loading, empty and error states
+* [x] Fetch customer, tickets, orders and notifications
+* [x] Independent loading, empty and error states
 
 ## Global search integration
 
@@ -30,8 +30,8 @@ This roadmap records the implemented portal UI and the next integration work wit
 
 ## Notification integration
 
-* [ ] Move notification data behind its mock service/query
-* [ ] Preserve the existing reactive counter and mark-as-read behavior
+* [x] Move notification data behind its mock service/query
+* [x] Preserve the existing reactive counter and mark-as-read behavior
 
 ## Final delivery
 
