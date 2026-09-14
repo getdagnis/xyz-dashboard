@@ -6,7 +6,6 @@ export type ChipTone =
   | 'warning'
   | 'success'
   | 'success-strong'
-  | 'danger'
   | 'danger-strong'
   | 'info'
 
