@@ -1,6 +1,6 @@
 # XYZ Portal Foundation Dashboard
 
-A lightweight customer portal prototype that aggregates account, service, commerce and notification data. It focuses on three capabilities: a composite dashboard, global search and a Notification Center.
+Assignment description: A lightweight customer portal prototype that aggregates account, service, commerce and notification data. It focuses on three capabilities: a composite dashboard, global search and a Notification Center.
 
 ## 1. Dashboard
 
@@ -38,7 +38,7 @@ The header opens a right-side Notification Center containing:
 
 The counter and subscribed views update immediately when a notification is marked as read.
 
-## Technical structure
+## Chosen technical structure
 
 * Vite
 * React
@@ -54,15 +54,13 @@ TanStack Query provides the shared client-side cache for the dashboard mock-serv
 
 ## Accessibility
 
-React Aria Components provide accessible keyboard interaction, control semantics and focus management for buttons, search, filters and the Notification Center dialog. Native semantic HTML is used for landmarks, headings, description lists, tables and result lists.
+**React Aria Components** provide out-of-box accessible keyboard interaction and focus management for the used regular buttons, state toggle buttons, search, filters and the Notification Center dialog. Native semantic HTML is used for cards, headings, description lists, tables, lists and other static elements.
 
-Icon-only controls have accessible names, focus is visibly indicated, and status information is expressed through text rather than colour alone.
+Icon-only controls have accessible names, focus is visibly indicated and status information is shown through text rather than color alone.
 
-Axe DevTools was used during development to identify colour-contrast and other accessibility issues. After adjusting the semantic colour tokens and component markup, the tested application view reports **0 automatic issues** with WCAG 2.1 AA and Best Practices enabled.
+**Axe DevTools** were used during development to identify color-contrast and other accessibility issues. Token provided color usage was adjusted throughout the entire development process, as a result the accessibility tested application reports **0 automatic issues** with WCAG 2.1 AA and Best Practices settings enabled.
 
-Automated testing does not replace complete keyboard and screen-reader testing.
-
-Reference: [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG/)
+Automated testing does not replace complete keyboard and screen-reader testing. Reference: [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG/)
 
 ## Run locally
 
