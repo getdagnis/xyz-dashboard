@@ -16,6 +16,9 @@
   &[data-empty] .clear
     display: none
 
+  &:not([data-empty]) .description
+    display: none
+
 .control
   display: flex
   align-items: center
@@ -81,12 +84,9 @@
   color: var(--color-text-control)
 
 @media (max-width: 700px)
-  .control
-    flex-wrap: wrap
+  .description
+    display: none
 
-  .input
-    flex-basis: 100%
-
-  .details
-    margin-inline-start: auto
-    flex-shrink: 1
+@media (max-width: 360px)
+  .field
+    padding-inline: 0.5rem
