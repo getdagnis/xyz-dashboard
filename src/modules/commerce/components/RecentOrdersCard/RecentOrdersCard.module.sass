@@ -7,7 +7,7 @@
 
 .table
   width: 100%
-  min-width: 52rem
+  min-width: 58rem
   border-collapse: collapse
   text-align: left
 
@@ -34,19 +34,19 @@
 
   th:nth-child(2),
   td:nth-child(2)
-    width: 32%
+    width: 33%
 
   th:nth-child(3),
   td:nth-child(3)
-    width: 21%
+    width: 20%
 
   th:nth-child(4),
   td:nth-child(4)
-    width: 17%
+    width: 16%
 
   th:nth-child(5),
   td:nth-child(5)
-    width: 15%
+    width: 16%
 
   tbody td:nth-child(1),
   tbody td:nth-child(5)
@@ -68,7 +68,7 @@
     padding: 0
     list-style: none
 
-  .mobileTicket
+  .mobileOrder
     display: grid
     gap: var(--space-3)
     padding-block: var(--space-4)
@@ -79,38 +79,43 @@
     & + &
       border-top: 1px solid var(--color-border-subtle)
 
-  .ticketHeading
+  .orderHeading
     display: flex
     align-items: baseline
     gap: var(--space-5)
     min-width: 0
 
-  .ticketId
+  .orderId
     flex-shrink: 0
     color: var(--color-text-primary)
     font-size: var(--font-size-sm)
     font-weight: var(--font-weight-medium)
 
-  .ticketSubject
+  .orderSummary
     min-width: 0
     color: var(--color-text-primary)
     font-size: var(--font-size-md)
     font-weight: var(--font-weight-medium)
     overflow-wrap: anywhere
 
-  .ticketDetails
+  .orderDetails
     display: flex
     align-items: center
     flex-wrap: wrap
     gap: var(--space-3)
 
-  .updated
+  .total
+    color: var(--color-text-primary)
+    font-size: var(--font-size-md)
+    font-weight: var(--font-weight-semi-bold)
+
+  .date
     color: var(--color-text-muted)
     font-size: var(--font-size-sm)
     font-weight: var(--font-weight-medium)
 
 @media (max-width: 360px)
-  .ticketHeading
+  .orderHeading
     align-items: flex-start
     flex-direction: column
     gap: var(--space-1)

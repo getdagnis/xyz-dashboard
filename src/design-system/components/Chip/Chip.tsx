@@ -2,8 +2,8 @@ import type { ComponentPropsWithoutRef } from 'react'
 import styles from './Chip.module.sass'
 
 export type ChipTone =
+  | 'neutral'
   | 'warning'
-  | 'warning-strong'
   | 'success'
   | 'success-strong'
   | 'danger'

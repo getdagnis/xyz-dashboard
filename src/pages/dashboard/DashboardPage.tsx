@@ -1,4 +1,5 @@
 import CustomerOverviewCard from '../../modules/account/components/CustomerOverviewCard/CustomerOverviewCard'
+import RecentOrdersCard from '../../modules/commerce/components/RecentOrdersCard/RecentOrdersCard'
 import RecentNotificationsCard from '../../modules/notifications/components/RecentNotificationsCard/RecentNotificationsCard'
 import GlobalSearch from '../../modules/search/components/GlobalSearch/GlobalSearch'
 import OpenServiceTicketsCard from '../../modules/service-desk/components/OpenServiceTicketsCard/OpenServiceTicketsCard'
@@ -18,6 +19,7 @@ export default function DashboardPage() {
         <RecentNotificationsCard />
       </div>
       <OpenServiceTicketsCard />
+      <RecentOrdersCard />
     </div>
   )
 }

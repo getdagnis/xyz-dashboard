@@ -8,21 +8,21 @@
   font-weight: var(--font-weight-medium)
   line-height: 1.25
 
-  &[data-tone='warning']
+  &[data-tone='neutral']
     background: var(--color-status-in-progress-background)
     color: var(--color-status-in-progress-text)
 
-  &[data-tone='warning-strong']
-    background: var(--color-priority-medium-background)
-    color: var(--color-priority-medium-text)
-
-  &[data-tone='success']
+  &[data-tone='warning']
     background: var(--color-status-pending-background)
     color: var(--color-status-pending-text)
 
-  &[data-tone='success-strong']
+  &[data-tone='success']
     background: var(--color-status-resolved-background)
     color: var(--color-status-resolved-text)
+
+  &[data-tone='success-strong']
+    background: var(--color-status-delivered-background)
+    color: var(--color-status-delivered-text)
 
   &[data-tone='danger']
     background: var(--color-status-delayed-background)
@@ -33,5 +33,5 @@
     color: var(--color-priority-high-text)
 
   &[data-tone='info']
-    background: var(--color-priority-low-background)
-    color: var(--color-priority-low-text)
+    background: var(--color-priority-medium-background)
+    color: var(--color-priority-medium-text)

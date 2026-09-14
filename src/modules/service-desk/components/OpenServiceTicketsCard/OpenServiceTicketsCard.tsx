@@ -6,9 +6,9 @@ import styles from './OpenServiceTicketsCard.module.sass';
 const tickets = [
   {
     id: 'INC-24081',
-    subject: 'Intermittent VPN connection',
+    subject: 'Intermittent VPN connection and firewall issues',
     status: 'Processing',
-    statusTone: 'warning' as const,
+    statusTone: 'neutral' as const,
     priority: 'High',
     priorityTone: 'danger-strong' as const,
     updated: '12 min ago',
@@ -17,18 +17,18 @@ const tickets = [
     id: 'REQ-19803',
     subject: 'New employee workstation',
     status: 'Waiting approval',
-    statusTone: 'success' as const,
+    statusTone: 'warning' as const,
     priority: 'Medium',
-    priorityTone: 'warning-strong' as const,
+    priorityTone: 'info' as const,
     updated: '2 days ago',
   },
   {
     id: 'INC-23976',
     subject: 'Email access issue',
     status: 'Resolved',
-    statusTone: 'success-strong' as const,
+    statusTone: 'success' as const,
     priority: 'Low',
-    priorityTone: 'info' as const,
+    priorityTone: 'neutral' as const,
     updated: '5 days ago',
   },
 ];
@@ -65,6 +65,27 @@ export default function OpenServiceTicketsCard() {
             </tbody>
           </table>
         </div>
+        <ul className={styles.mobileList} aria-label="Open service tickets">
+          {tickets.map((ticket) => (
+            <li key={ticket.id} className={styles.mobileTicket}>
+              <div className={styles.ticketHeading}>
+                <span className={styles.ticketId}>{ticket.id}</span>
+                <span className={styles.ticketSubject}>{ticket.subject}</span>
+              </div>
+              <div className={styles.ticketDetails}>
+                <Chip tone={ticket.statusTone} aria-label={`Status: ${ticket.status}`}>
+                  {ticket.status}
+                </Chip>
+                <Chip tone={ticket.priorityTone} aria-label={`Priority: ${ticket.priority}`}>
+                  {ticket.priority}
+                </Chip>
+                <time className={styles.updated} aria-label={`Updated ${ticket.updated}`}>
+                  Updated {ticket.updated}
+                </time>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Card>
       <div className={styles.actions}>
         <Button type="button" variant="secondary">
