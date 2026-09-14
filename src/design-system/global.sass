@@ -1,0 +1,41 @@
+@use './tokens'
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300...700;1,14..32,300..700&display=swap')
+
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+body
+  margin: 0
+  min-width: 0
+  background: var(--color-background)
+  color: var(--color-text-primary)
+  font-family: var(--font-family-body)
+  font-size: var(--font-size-body)
+  font-weight: var(--font-weight-body)
+  line-height: 1.5
+
+#root
+  min-height: 100svh
+
+h1,
+h2,
+h3,
+p
+  margin: 0
+
+button,
+input,
+select,
+textarea
+  font: inherit
+
+img,
+svg
+  display: block
+  max-width: 100%
+
+:focus-visible
+  outline: var(--focus-width) var(--focus-style) var(--color-focus)
+  outline-offset: var(--focus-offset)
