@@ -93,17 +93,3 @@ npm run check
 ```
 
 This runs TypeScript checking, ESLint, Vitest and the production build.
-
-## Not implemented
-
-Deliberately omitted optional expansion:
-
-- Storybook or broader design-system documentation;
-- retry UI and simulated random failures;
-- routing and multiple pages;
-- global client-state library;
-- notification persistence, timestamps and deep links;
-- authentication and authorization;
-- profile menu behavior;
-- autocomplete or result navigation;
-- behavior behind supplementary dashboard buttons.
