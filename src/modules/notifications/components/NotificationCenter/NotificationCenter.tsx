@@ -31,7 +31,7 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
               </header>
               <Card
                 eyebrow="Notifications"
-                title="All notifications"
+                title={filter === 'unread' ? 'Unread notifications' : 'All notifications'}
                 headerAction={
                   <ToggleButtonGroup
                     className={styles.filters}
@@ -50,31 +50,35 @@ export default function NotificationCenter({ isOpen, onOpenChange }: Notificatio
                   </ToggleButtonGroup>
                 }
               >
-                <ul className={styles.list}>
-                  {visibleNotifications.map((notification) => (
-                    <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
-                      <span className={styles.dot} aria-hidden="true" />
-                      <span>{notification.text}</span>
-                      {notification.unread && (
-                        <IconButton
-                          className={styles.markRead}
-                          aria-label={`Mark ${notification.text} as read`}
-                          onPress={() => markAsRead(notification.id)}
-                        >
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.75"
-                            aria-hidden="true"
+                {visibleNotifications.length === 0 ? (
+                  <p className={styles.empty}>No unread notifications.</p>
+                ) : (
+                  <ul className={styles.list}>
+                    {visibleNotifications.map((notification) => (
+                      <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
+                        <span className={styles.dot} aria-hidden="true" />
+                        <span>{notification.text}</span>
+                        {notification.unread && (
+                          <IconButton
+                            className={styles.markRead}
+                            aria-label={`Mark ${notification.text} as read`}
+                            onPress={() => markAsRead(notification.id)}
                           >
-                            <path d="m5 12 4 4L19 6" />
-                          </svg>
-                        </IconButton>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.75"
+                              aria-hidden="true"
+                            >
+                              <path d="m5 12 4 4L19 6" />
+                            </svg>
+                          </IconButton>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </Card>
             </>
           )}

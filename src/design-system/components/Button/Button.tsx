@@ -4,7 +4,7 @@ import type { ButtonProps as AriaButtonProps } from 'react-aria-components'
 import styles from './Button.module.sass'
 
 export interface ButtonProps extends AriaButtonProps {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'action'
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(

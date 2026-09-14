@@ -3,6 +3,13 @@
   align-items: flex-start
   gap: 0.25rem
 
+.card
+  display: flex
+  flex-direction: column
+
+.content
+  flex: 1
+
 .filter
   border: 0
   border-radius: var(--radius-control)
@@ -34,6 +41,16 @@
   margin: 0
   padding: 0
   list-style: none
+
+.empty
+  margin: 0
+  color: var(--color-text-muted)
+  font-size: var(--font-size-md)
+
+.footer
+  display: flex
+  justify-content: flex-end
+  padding-top: var(--space-6)
 
 .unread,
 .read

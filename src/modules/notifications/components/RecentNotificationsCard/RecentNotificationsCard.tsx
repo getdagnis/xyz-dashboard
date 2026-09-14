@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { ToggleButton, ToggleButtonGroup } from 'react-aria-components'
+import Button from '../../../../design-system/components/Button/Button'
 import Card from '../../../../design-system/components/Card/Card'
 import { useNotifications } from '../../NotificationsContext'
 import styles from './RecentNotificationsCard.module.sass'
 
 export default function RecentNotificationsCard() {
   const [filter, setFilter] = useState<'all' | 'unread'>('all')
-  const { notifications } = useNotifications()
+  const { notifications, openNotificationCenter } = useNotifications()
   const visibleNotifications = notifications
     .filter((notification) => filter === 'all' || notification.unread)
     .slice(0, 3)
 
   return (
     <Card
+      className={styles.card}
       eyebrow="Notifications"
       title="Recent notifications"
       headerAction={
@@ -29,17 +31,26 @@ export default function RecentNotificationsCard() {
         </ToggleButtonGroup>
       }
     >
-      <ul className={styles.list}>
-        {visibleNotifications.map((notification) => (
-          <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
-            <span className={styles.dot} aria-hidden="true" />
-            <span>
-              <span className={styles.status}>{notification.unread ? 'Unread: ' : 'Read: '}</span>
-              {notification.text}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className={styles.content}>
+        {visibleNotifications.length === 0 ? (
+          <p className={styles.empty}>No unread notifications.</p>
+        ) : (
+          <ul className={styles.list}>
+            {visibleNotifications.map((notification) => (
+              <li key={notification.id} className={notification.unread ? styles.unread : styles.read}>
+                <span className={styles.dot} aria-hidden="true" />
+                <span>
+                  <span className={styles.status}>{notification.unread ? 'Unread: ' : 'Read: '}</span>
+                  {notification.text}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className={styles.footer}>
+        <Button variant="action" onPress={openNotificationCenter}>View all</Button>
+      </div>
     </Card>
   )
 }
