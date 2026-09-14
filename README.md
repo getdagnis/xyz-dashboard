@@ -1,63 +1,104 @@
 # XYZ Portal Foundation Dashboard
 
-"XYZ" provides a comprehensive suite of IT solutions and services to digital  enterprises. Portal Foundation Application allows users to view high level account details, run global lookups, and interact with system activity alerts by  aggregating data from multiple underlying product APIs. This is a lightweight prototype focusing on three core  capabilities: a composite Dashboard, a Global Search mechanism and a Notification Center.
+A lightweight customer portal prototype that aggregates account, service, commerce and notification data. It focuses on three capabilities: a composite dashboard, global search and a Notification Center.
 
 ## 1. Dashboard
 
-Renders a composite dashboard that presents data fetched from separate mocked API services:
+The responsive dashboard currently includes:
 
-• **Customer Information:** Profile details and assigned organization
+* customer and organization information;
+* open service tickets with status and priority;
+* recent orders with shipment status and totals;
+* recent read and unread notifications.
 
-• **Open Service Tickets:** Ticket IDs, operational status, and priority
+Reusable `Button`, `IconButton`, `Card` and `Chip` components support the interface. Non-interactive content uses semantic HTML, including description lists, tables, sections and lists.
 
-• **Recent Orders:** Order numbers, totals, and shipment status
-
-• **Notifications:** Recent unread activity flags
+Dashboard data is currently static and will be moved behind independent mock services.
 
 ## 2. Global Search
 
-A global search input field. As the user types, the system triggers concurrent search queries against three distinct mock data sources:
+The controlled search field replaces the dashboard content with grouped results from:
 
-• Products
+* Products;
+* Knowledge Articles;
+* Support Tickets.
 
-• Knowledge Articles
+The current synchronous fixture supports `VPN` as a documented review query. The results component also supports independent loading, empty and error presentation states.
 
-• Support Tickets
+The fixture will be replaced by three concurrent, debounced mock-service queries.
 
 ## 3. Notification Center
 
-A notification dropdown or panel accessible from the main layout containing:
+The header opens a right-side Notification Center containing:
 
-• An **unread counter badge** that updates reactively
+* a reactive unread counter;
+* All and Unread filters;
+* individual mark-as-read actions;
+* state shared with the dashboard notification summary.
 
-• A quick action to **mark an individual notification as read** (which immediately  updates the global counter)
+The counter and subscribed views update immediately when a notification is marked as read.
 
-• A filter toggle to switch between viewing "All Notifications" and "Unread Only"
+## Technical foundation
 
-## Starting the project locally
+* Vite
+* React
+* strict TypeScript
+* Sass Modules
+* React Aria Components
+* TanStack Query
+* Vitest and React Testing Library
 
-Start the project by running...
+The application is organized by portal modules. Shared visual components and tokens live in the design system, while account, commerce, service-desk, search and notification code remain within their respective domains.
 
-## Challenges
+TanStack Query is installed for the upcoming mocked server-state integration. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
 
-### WCAG Compliance. The Four POUR Principles
+## Accessibility
 
-Dashboard strives to follow WCAG 2 complicance guidelines. WCAG 2 sets the international technical standard for digital accessibility via the World Wide Web Consortium (W3C).
+The UI targets WCAG 2.2 AA and currently includes:
 
-WCAG guidelines are organized into four core principles:
+* semantic landmarks and content structures;
+* keyboard-accessible React Aria controls;
+* visible focus states;
+* accessible control names;
+* modal focus management and dismissal;
+* sufficiently large interaction targets;
+* status meaning that does not depend on colour alone;
+* contrast-adjusted semantic colour tokens.
 
-**(P)erceivable:** Information and user interface components must be presentable to users in ways they can perceive.
+Automated checks support, but do not replace, keyboard, zoom and screen-reader review.
 
-**(O)perable:** User interface components and navigation must be operable by all, including keyboard-only use.
+Reference: [Web Content Accessibility Guidelines 2.2](https://www.w3.org/TR/WCAG22/)
 
-**(U)nderstandable:** Information and the operation of the user interface must be easy to comprehend.
+## Run locally
 
-**(R)obust:** Content must be robust enough to work reliably with various assistive technologies like screen readers.
+```bash
+npm install
+npm run dev
+```
 
-[1] (<https://www.wcag.com/resource/what-is-wcag/>)
+Open the local URL printed by Vite.
 
-[2] (<https://userway.org/compliance/wcag/>)
+## Validation
 
-### React Aria Components
+```bash
+npm run typecheck
+npm run lint
+npm run test:run
+npm run build
+```
 
-React Aria Components provides **accessible** interaction primitives for controls and overlays while leaving visual implementation to the project’s Sass Modules and semantic design tokens. Native HTML remains preferred for non-interactive content structures.
+Run the complete validation sequence with:
+
+```bash
+npm run check
+```
+
+## Remaining implementation
+
+* typed deterministic mock services;
+* independent dashboard queries and states;
+* approximately 300 ms search debounce;
+* three concurrent search queries;
+* obsolete-request cancellation and stale-result protection;
+* settled-result live announcements;
+* final responsive, keyboard and accessibility review.
