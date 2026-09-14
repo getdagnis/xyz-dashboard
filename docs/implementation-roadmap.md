@@ -12,9 +12,9 @@ This roadmap records the implemented portal UI and the next integration work wit
 
 ## Mock service layer
 
-* [ ] Typed deterministic services
-* [ ] Controlled latency and `AbortSignal`
-* [ ] QueryClient provider
+* [x] Typed deterministic services
+* [x] Controlled latency and `AbortSignal`
+* [x] QueryClient provider
 
 ## Dashboard integration
 

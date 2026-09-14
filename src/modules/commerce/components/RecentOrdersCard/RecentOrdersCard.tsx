@@ -10,7 +10,7 @@ const orders = [
     shipmentStatus: 'Processing',
     shipmentTone: 'neutral' as const,
     total: '€18,240.00',
-    date: 'Sep 10, 2026',
+    date: 'Sep 6, 2026',
     dateTime: '2026-09-06',
   },
   {
@@ -19,7 +19,7 @@ const orders = [
     shipmentStatus: 'Shipped',
     shipmentTone: 'success' as const,
     total: '€6,720.00',
-    date: 'Sep 7, 2026',
+    date: 'Sep 5, 2026',
     dateTime: '2026-09-05',
   },
   {

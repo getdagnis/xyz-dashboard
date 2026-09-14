@@ -17,6 +17,16 @@ describe('mock services', () => {
     expect(tickets.length).toBeGreaterThan(0)
   })
 
+  it('returns no results for an empty query', async () => {
+    const results = await Promise.all([
+      searchProducts('   '),
+      searchArticles('   '),
+      searchTickets('   '),
+    ])
+
+    expect(results).toEqual([[], [], []])
+  })
+
   it('rejects an aborted request with an AbortError', async () => {
     const controller = new AbortController()
     const request = getCustomer(controller.signal)

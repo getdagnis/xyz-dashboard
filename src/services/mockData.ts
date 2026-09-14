@@ -1,38 +1,38 @@
 export interface Customer {
-  name: string
-  portalRole: string
-  organization: string
-  accountType: string
-  accountNumber: string
-  accountStatus: string
+  name: string;
+  portalRole: string;
+  organization: string;
+  accountType: string;
+  accountNumber: string;
+  accountStatus: string;
 }
 
 export interface ServiceTicket {
-  id: string
-  subject: string
-  status: string
-  priority: string
-  updated: string
+  id: string;
+  subject: string;
+  status: string;
+  priority: string;
+  updated: string;
 }
 
 export interface RecentOrder {
-  id: string
-  summary: string
-  shipmentStatus: string
-  total: string
-  date: string
-  dateTime: string
+  id: string;
+  summary: string;
+  shipmentStatus: string;
+  total: string;
+  date: string;
+  dateTime: string;
 }
 
 export interface Notification {
-  id: string
-  text: string
-  unread: boolean
+  id: string;
+  text: string;
+  unread: boolean;
 }
 
 export interface SearchResult {
-  id: string
-  title: string
+  id: string;
+  title: string;
 }
 
 export const customer: Readonly<Customer> = {
@@ -42,12 +42,12 @@ export const customer: Readonly<Customer> = {
   accountType: 'Enterprise account',
   accountNumber: 'NL-004182',
   accountStatus: 'Active',
-}
+};
 
 export const tickets: readonly ServiceTicket[] = [
   {
     id: 'INC-24081',
-    subject: 'Intermittent VPN connection and firewall issues',
+    subject: 'Intermittent VPN connection and firewall policy issues',
     status: 'Processing',
     priority: 'High',
     updated: '12 min ago',
@@ -66,7 +66,7 @@ export const tickets: readonly ServiceTicket[] = [
     priority: 'Low',
     updated: '5 days ago',
   },
-]
+];
 
 export const orders: readonly RecentOrder[] = [
   {
@@ -74,7 +74,7 @@ export const orders: readonly RecentOrder[] = [
     summary: '12 laptops and docking stations',
     shipmentStatus: 'Processing',
     total: '€18,240.00',
-    date: 'Sep 10, 2026',
+    date: 'Sep 6, 2026',
     dateTime: '2026-09-06',
   },
   {
@@ -82,7 +82,7 @@ export const orders: readonly RecentOrder[] = [
     summary: '24 office monitors',
     shipmentStatus: 'Shipped',
     total: '€6,720.00',
-    date: 'Sep 7, 2026',
+    date: 'Sep 5, 2026',
     dateTime: '2026-09-05',
   },
   {
@@ -101,7 +101,7 @@ export const orders: readonly RecentOrder[] = [
     date: 'Aug 18, 2026',
     dateTime: '2026-08-18',
   },
-]
+];
 
 export const notifications: readonly Notification[] = [
   { id: 'ticket-update', text: 'Ticket INC-24081 was updated by the service team', unread: true },
@@ -112,19 +112,19 @@ export const notifications: readonly Notification[] = [
   { id: 'request-reminder', text: 'A request REQ-19803 is waiting for your review', unread: true },
   { id: 'request-follow-up', text: 'A request is waiting for approval', unread: false },
   { id: 'request-pending', text: 'Request REQ-19803 is waiting for approval', unread: false },
-]
+];
 
 export const products: readonly SearchResult[] = [
   { id: 'secure-remote-access-licence', title: 'Secure Remote Access licence' },
   { id: 'vpn-gateway-appliance', title: 'VPN gateway appliance' },
-]
+];
 
 export const articles: readonly SearchResult[] = [
   { id: 'managed-device-vpn', title: 'Set up VPN access on a managed device' },
   { id: 'intermittent-vpn', title: 'Troubleshoot intermittent VPN connections' },
-]
+];
 
 export const supportTickets: readonly SearchResult[] = [
   { id: 'INC-24081', title: 'INC-24081 — Intermittent VPN connection and firewall issues' },
   { id: 'INC-23910', title: 'INC-23910 — VPN access for a new employee' },
-]
+];
