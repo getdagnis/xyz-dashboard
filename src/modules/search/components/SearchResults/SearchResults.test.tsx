@@ -1,8 +1,8 @@
-import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it } from 'vitest'
-import SearchResults from './SearchResults'
+import { cleanup, render, screen } from '@testing-library/react';
+import { afterEach, describe, expect, it } from 'vitest';
+import SearchResults from './SearchResults';
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 describe('SearchResults', () => {
   it('keeps each source group visible for its own state', () => {
@@ -14,14 +14,16 @@ describe('SearchResults', () => {
           { id: 'knowledge', label: 'Knowledge articles', state: 'empty', results: [] },
           { id: 'tickets', label: 'Support tickets', state: 'error', results: [] },
         ]}
+        isSettled
       />,
-    )
+    );
 
-    expect(screen.getByRole('heading', { name: 'Products' })).toBeTruthy()
-    expect(screen.getByText('Loading results…')).toBeTruthy()
-    expect(screen.getByRole('heading', { name: 'Knowledge articles' })).toBeTruthy()
-    expect(screen.getByText('No results from this source.')).toBeTruthy()
-    expect(screen.getByRole('heading', { name: 'Support tickets' })).toBeTruthy()
-    expect(screen.getByText('Unable to load results from this source.')).toBeTruthy()
-  })
-})
+    expect(screen.getByRole('heading', { name: 'Products' })).toBeTruthy();
+    expect(screen.getByText('Loading results…')).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Knowledge articles' })).toBeTruthy();
+    expect(screen.getByText('No results from this source.')).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Support tickets' })).toBeTruthy();
+    expect(screen.getByText('Unable to load results from this source.')).toBeTruthy();
+    expect(screen.getByRole('status').textContent).toContain('Search complete.');
+  });
+});

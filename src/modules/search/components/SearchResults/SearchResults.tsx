@@ -32,16 +32,27 @@ function GroupContent({ group }: { group: SearchResultGroup }) {
   );
 }
 
-export default function SearchResults({ query, groups }: SearchResultsProps) {
+export default function SearchResults({ query, groups, isSettled }: SearchResultsProps) {
   const headingId = useId();
+
+  const resultCount = groups.reduce((total, group) => total + group.results.length, 0);
+
+  const hasErrors = groups.some((group) => group.state === 'error');
 
   return (
     <section className={styles.surface} aria-labelledby={headingId}>
       <h2 id={headingId} className={styles.visuallyHidden}>
         Search results for “{query}”
       </h2>
+      <p className={styles.visuallyHidden} role="status" aria-atomic="true">
+        {isSettled
+          ? `Search complete. ${resultCount} ${
+              resultCount === 1 ? 'result' : 'results'
+            } found for ${query}.${hasErrors ? ' Some sources could not be loaded.' : ''}`
+          : `Searching for ${query}.`}
+      </p>
       {groups.length === 0 ? (
-        <p className={styles.noResults}>No results found. Try 'VPN'.</p>
+        <p className={styles.noResults}>No results found</p>
       ) : (
         <div className={styles.groups}>
           {groups.map((group) => {
