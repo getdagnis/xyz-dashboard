@@ -6,12 +6,14 @@ import GlobalSearch from '../../modules/search/components/GlobalSearch/GlobalSea
 import SearchResults from '../../modules/search/components/SearchResults/SearchResults';
 import { useGlobalSearch } from '../../modules/search/hooks/useGlobalSearch';
 import OpenServiceTicketsCard from '../../modules/service-desk/components/OpenServiceTicketsCard/OpenServiceTicketsCard';
+import { useCustomer } from '../../modules/account/useCustomer';
 import styles from './DashboardPage.module.sass';
 
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const isSearching = searchQuery.trim().length > 0;
   const { groups, isSettled } = useGlobalSearch(searchQuery);
+  const { data: customer } = useCustomer();
 
   return (
     <div className={styles.page}>
@@ -20,7 +22,7 @@ export default function DashboardPage() {
         <time className={styles.date} dateTime="2026-09-14">
           Monday, 14 September 2026
         </time>
-        <h1 className={styles.title}>Good morning, Jordan</h1>
+        <h1>Good morning{customer ? `, ${customer.firstName}` : ''}</h1>
         <p className={styles.subtitle}>Here’s the latest activity across your XYZ services</p>
       </header>
       <GlobalSearch value={searchQuery} onChange={setSearchQuery} />

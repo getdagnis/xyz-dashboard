@@ -18,7 +18,7 @@ function GroupContent({ group }: { group: SearchResultGroup }) {
   }
 
   if (group.state === 'empty' || group.results.length === 0) {
-    return <p className={styles.state}>No results from this source.</p>;
+    return <p className={styles.state}>No results from this source. Try 'VPN'</p>;
   }
 
   return (

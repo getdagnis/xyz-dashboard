@@ -50,7 +50,7 @@ The counter and subscribed views update immediately when a notification is marke
 
 The application is organized by portal modules. Shared visual components and tokens live in the `design-system` module. `Account`, `commerce`, `service-desk`, `search` and `notifications` have their own respective ones.
 
-TanStack Query provides the shared client-side cache for the dashboard mock-service integration. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
+**TanStack Query** provides the shared client-side cache for the dashboard mock-service integration and search grouping. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
 
 ## Accessibility
 

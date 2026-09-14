@@ -1,5 +1,6 @@
 export interface Customer {
-  name: string;
+  firstName: string;
+  lastName: string;
   portalRole: string;
   organization: string;
   accountType: string;
@@ -40,7 +41,8 @@ export interface SearchResult {
 }
 
 export const customer: Readonly<Customer> = {
-  name: 'Jordan Smith',
+  firstName: 'Jordan',
+  lastName: 'Smith',
   portalRole: 'IT service manager',
   organization: 'Northstar Logistics',
   accountType: 'Enterprise account',
