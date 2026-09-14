@@ -52,7 +52,7 @@ describe('useGlobalSearch', () => {
 
     await act(async () => {
       // 2  mock latency + tiny flush for query notifications.
-      await vi.advanceTimersByTimeAsync(1001);
+      await vi.advanceTimersByTimeAsync(1101);
     });
 
     expect(result.current.groups.every((group) => group.state === 'results')).toBe(true);

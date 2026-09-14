@@ -1,87 +1,81 @@
 # XYZ Portal Foundation Dashboard
 
-Assignment description: A lightweight customer portal prototype that aggregates account, service, commerce and notification data. It focuses on three capabilities: a composite dashboard, global search and a Notification Center.
+A lightweight React and TypeScript customer portal prototype demonstrating a composite dashboard, concurrent global search and a reactive Notification Center.
 
-## 1. Dashboard
+## Features
 
-The responsive dashboard currently includes:
+### Dashboard
 
-* customer and organization information;
-* open service tickets with status and priority;
-* recent orders with shipment status and totals;
-* recent read and unread notifications.
+Data is fetched from four separate typed mock API services:
 
-Reusable `Button`, `IconButton`, `Card` and `Chip` components support the interface. Non-interactive content uses semantic HTML, including description lists, tables, sections and lists.
+- customer and organization information;
+- open service tickets with status and priority;
+- recent orders with totals and shipment status;
+- recent read and unread notifications.
 
-Dashboard data is loaded through four independent typed mock services, so each dashboard section can load, fail or remain empty without blocking the others.
+Each section handles its own loading, empty and error states.
 
-## 2. Global Search
+### Global Search
 
-The controlled search field replaces the dashboard content with grouped results from:
+The search input is debounced by approximately 300 ms before concurrently querying three independent mock data sources:
 
-* Products;
-* Knowledge Articles;
-* Support Tickets.
+- Products;
+- Knowledge Articles;
+- Support Tickets.
 
-The current synchronous fixture supports `VPN` as a documented review query. The results component also supports independent loading, empty and error presentation states.
+Each source has independent loading, empty, error and result states. TanStack Query handles caching, cancellation and stale-result protection.
 
-The fixture will be replaced by three concurrent, debounced mock-service queries.
+Search for `VPN` to see results from all three sources.
 
-## 3. Notification Center
+### Notification Center
 
-The header opens a right-side Notification Center containing:
+The Notification Center provides:
 
-* a reactive unread counter;
-* All and Unread filters;
-* individual mark-as-read actions;
-* state shared with the dashboard notification summary.
+- a reactive unread counter;
+- All and Unread filters;
+- an individual mark-as-read action;
+- notification state shared with the dashboard summary.
 
-The counter and subscribed views update immediately when a notification is marked as read.
+Marking a notification as read immediately updates the unread counter and both notification views.
 
-## Chosen technical structure
+## Technical Structure
 
-* Vite
-* React
-* strict TypeScript
-* Sass Modules
-* React Aria Components
-* TanStack Query
-* Vitest and React Testing Library
+- Vite
+- React
+- strict TypeScript
+- Sass Modules
+- React Aria Components
+- TanStack Query
+- Vitest and React Testing Library
 
-The application is organized by portal modules. Shared visual components and tokens live in the `design-system` module. `Account`, `commerce`, `service-desk`, `search` and `notifications` have their own respective ones.
+Application code is organized by portal modules. Shared UI components and tokens live in `src/design-system`, while mocked API services are separated in `src/services`.
 
-**TanStack Query** provides the shared client-side cache for the dashboard mock-service integration and search grouping. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
+React Aria Components provide accessible interaction primitives for buttons, search controls, filters and the Notification Center dialog. Native semantic HTML is used for static content such as headings, description lists, tables and result lists.
 
-## Global search
+## Design Tokens and Brand Adherence
 
-Search input is debounced by approximately 300 ms before three independent mock-service queries run simultaneously over Products, Knowledge Articles and Support Tickets.
+The supplied JSON token package is the source for the application’s color, spacing, typography and border-radius values.
 
-Each source has its own loading, empty, error and result state. TanStack Query provides request cancellation, cache isolation and stale-result protection as the search term changes.
+Its primitive values are mapped to semantic CSS custom properties in `src/design-system/tokens.sass`. Components consume semantic tokens rather than directly using brand values, keeping presentation consistent and allowing the visual system to evolve independently from component code.
 
-For review, search for `VPN` to see populated results from all three mock data sources.
+The supplied layout, color and typography conventions informed the responsive grid, surfaces, controls and content hierarchy.
 
 ## Accessibility
 
-**React Aria Components** provide out-of-box accessible keyboard interaction and focus management for the used regular buttons, state toggle buttons, search, filters and the Notification Center dialog. Native semantic HTML is used for cards, headings, description lists, tables, lists and other static elements.
+The interface includes keyboard-accessible controls, visible focus states, accessible names for icon-only buttons, dialog focus management and status information that does not depend on color alone.
 
-Icon-only controls have accessible names, focus is visibly indicated and status information is shown through text rather than color alone.
+A manual Axe DevTools scan of the completed dashboard view reported **0 automatic issues** with WCAG 2.1 AA and Best Practices enabled.
 
-**Axe DevTools** were used during development to identify color-contrast and other accessibility issues. Token provided color usage was adjusted throughout the entire development process, as a result the accessibility tested application reports **0 automatic issues** with WCAG 2.1 AA and Best Practices settings enabled.
+Automated checks do not replace complete keyboard, zoom and screen-reader testing.
 
-Automated testing does not replace complete keyboard and screen-reader testing. Reference: [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG/)
-
-## Design Tokens
-
-The supplied token package is used as the main reference for the application's colors, spacing, typography and border radiuses. The JSON primitives are mapped as SASS global variables in `src/design-system/tokens.sass`.
-
-## Run locally
+## Run Locally
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
-Open the local URL printed by Vite
+Open the local URL printed by Vite.
 
 ## Validation
 
@@ -97,3 +91,19 @@ Run all validation checks with one command:
 ```bash
 npm run check
 ```
+
+This runs TypeScript checking, ESLint, Vitest and the production build.
+
+## Not implemented
+
+Deliberately omitted optional expansion:
+
+- Storybook or broader design-system documentation;
+- retry UI and simulated random failures;
+- routing and multiple pages;
+- global client-state library;
+- notification persistence, timestamps and deep links;
+- authentication and authorization;
+- profile menu behavior;
+- autocomplete or result navigation;
+- behavior behind supplementary dashboard buttons.

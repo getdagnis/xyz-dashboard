@@ -131,6 +131,6 @@ export const articles: readonly SearchResult[] = [
 ];
 
 export const supportTickets: readonly SearchResult[] = [
-  { id: 'INC-24081', title: 'INC-24081 — Intermittent VPN connection and firewall issues' },
+  { id: 'INC-24081', title: 'INC-24081 — Intermittent VPN connection and firewall policy issues' },
   { id: 'INC-23910', title: 'INC-23910 — VPN access for a new employee' },
 ];
