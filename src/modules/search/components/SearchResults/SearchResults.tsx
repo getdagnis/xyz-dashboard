@@ -5,6 +5,7 @@ import styles from './SearchResults.module.sass';
 interface SearchResultsProps {
   query: string;
   groups: readonly SearchResultGroup[];
+  isSettled: boolean;
 }
 
 function GroupContent({ group }: { group: SearchResultGroup }) {
