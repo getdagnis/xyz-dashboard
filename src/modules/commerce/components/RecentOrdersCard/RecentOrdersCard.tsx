@@ -20,7 +20,7 @@ export default function RecentOrdersCard() {
     queryFn: ({ signal }) => getOrders(signal),
   })
 
-  const content = isLoading ? <p>Loading recent orders…</p>
+  const content = isLoading ? <p className={styles.empty}>Loading recent orders…</p>
     : isError ? <p>Unable to load recent orders.</p>
       : orders?.length === 0 ? <p>No recent orders.</p>
         : orders ? (

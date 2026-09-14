@@ -25,7 +25,7 @@ export default function OpenServiceTicketsCard() {
     queryFn: ({ signal }) => getTickets(signal),
   })
 
-  const content = isLoading ? <p>Loading service tickets…</p>
+  const content = isLoading ? <p className={styles.empty}>Loading service tickets…</p>
     : isError ? <p>Unable to load service tickets.</p>
       : tickets?.length === 0 ? <p>No open service tickets.</p>
         : tickets ? (

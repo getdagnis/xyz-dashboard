@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { getCustomer } from './customerService'
 import { searchArticles } from './search/knowledgeArticleSearchService'
 import { searchProducts } from './search/productSearchService'
@@ -6,11 +6,14 @@ import { searchTickets } from './search/supportTicketSearchService'
 
 describe('mock services', () => {
   it('returns VPN results from every search source', async () => {
-    const [products, articles, tickets] = await Promise.all([
+    vi.useFakeTimers()
+    const results = Promise.all([
       searchProducts('VPN'),
       searchArticles('VPN'),
       searchTickets('VPN'),
     ])
+    await vi.runAllTimersAsync()
+    const [products, articles, tickets] = await results
 
     expect(products.length).toBeGreaterThan(0)
     expect(articles.length).toBeGreaterThan(0)
@@ -18,11 +21,14 @@ describe('mock services', () => {
   })
 
   it('returns no results for an empty query', async () => {
-    const results = await Promise.all([
+    vi.useFakeTimers()
+    const resultPromise = Promise.all([
       searchProducts('   '),
       searchArticles('   '),
       searchTickets('   '),
     ])
+    await vi.runAllTimersAsync()
+    const results = await resultPromise
 
     expect(results).toEqual([[], [], []])
   })
@@ -36,3 +42,5 @@ describe('mock services', () => {
     await expect(request).rejects.toMatchObject({ name: 'AbortError' })
   })
 })
+
+afterEach(() => vi.useRealTimers())

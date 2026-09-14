@@ -71,7 +71,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+Open the local URL printed by Vite
 
 ## Validation
 
@@ -82,7 +82,7 @@ npm run test:run
 npm run build
 ```
 
-Run the complete validation sequence with:
+Run all validation checks with one command:
 
 ```bash
 npm run check

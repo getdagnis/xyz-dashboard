@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import userEvent from '@testing-library/user-event'
 import { afterEach, describe, expect, it } from 'vitest'
 import { NotificationsProvider } from '../../NotificationsProvider'
+import { notifications } from '../../../../services/mockData'
 import NotificationCenter from './NotificationCenter'
 
 afterEach(cleanup)
@@ -11,6 +12,7 @@ describe('NotificationCenter', () => {
   it('labels the unread view and displays an empty state after all items are read', async () => {
     const user = userEvent.setup()
     const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+    queryClient.setQueryData(['notifications'], notifications)
 
     render(
       <QueryClientProvider client={queryClient}>

@@ -11,7 +11,7 @@ export default function CustomerOverviewCard() {
 
   return (
     <Card eyebrow="Account" title="Customer overview">
-      {isLoading ? <p>Loading customer information…</p> : null}
+      {isLoading ? <p className={styles.empty}>Loading customer information…</p> : null}
       {isError ? <p>Unable to load customer information.</p> : null}
       {customer ? (
         <dl className={styles.details}>
