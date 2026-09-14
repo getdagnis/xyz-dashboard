@@ -1,13 +1,13 @@
-import Button from '../../../../design-system/components/Button/Button'
-import Card from '../../../../design-system/components/Card/Card'
-import Chip from '../../../../design-system/components/Chip/Chip'
-import styles from './OpenServiceTicketsCard.module.sass'
+import Button from '../../../../design-system/components/Button/Button';
+import Card from '../../../../design-system/components/Card/Card';
+import Chip from '../../../../design-system/components/Chip/Chip';
+import styles from './OpenServiceTicketsCard.module.sass';
 
 const tickets = [
   {
     id: 'INC-24081',
     subject: 'Intermittent VPN connection',
-    status: 'In progress',
+    status: 'Processing',
     statusTone: 'warning' as const,
     priority: 'High',
     priorityTone: 'danger-strong' as const,
@@ -16,13 +16,22 @@ const tickets = [
   {
     id: 'REQ-19803',
     subject: 'New employee workstation',
-    status: 'Shipped',
+    status: 'Waiting approval',
     statusTone: 'success' as const,
     priority: 'Medium',
     priorityTone: 'warning-strong' as const,
     updated: '2 days ago',
   },
-]
+  {
+    id: 'INC-23976',
+    subject: 'Email access issue',
+    status: 'Resolved',
+    statusTone: 'success-strong' as const,
+    priority: 'Low',
+    priorityTone: 'info' as const,
+    updated: '5 days ago',
+  },
+];
 
 export default function OpenServiceTicketsCard() {
   return (
@@ -58,9 +67,11 @@ export default function OpenServiceTicketsCard() {
         </div>
       </Card>
       <div className={styles.actions}>
-        <Button type="button" variant="secondary">Manage tickets</Button>
+        <Button type="button" variant="secondary">
+          Manage tickets
+        </Button>
         <Button type="button">Open ticket</Button>
       </div>
     </div>
-  )
+  );
 }
