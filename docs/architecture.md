@@ -41,6 +41,9 @@ src/
       components/NotificationCenter/
     search/
       components/GlobalSearch/
+      components/SearchResults/
+      data/searchPreviewFixture.ts    # Temporary synchronous review data
+      types.ts                         # Grouped search presentation contract
   design-system/                  # Global Sass and current token aliases
     components/                   # Reusable primitives as they appear
   shared/
@@ -57,7 +60,7 @@ This is a growth map, not a requirement to create empty folders. Each module add
 - Pages compose module UI. Modules do not import pages or application initialization.
 - Domain requests and mock adapters belong to their owning module. A future `shared/api` owns common transport, authentication-header attachment and transport error normalization; domain response mapping stays in the module.
 - Cross-module consumers use an intentional public entry point once a module has consumers. They do not import another module's internal hooks or adapters.
-- Search is a cross-domain integration capability. It can use a dedicated search API or receive domain search contracts from application composition. It should not depend on domain cards or create a web of internal adapter imports.
+- Search is a cross-domain integration capability. `DashboardPage` currently owns only the controlled query for the synchronous UI preview; `SearchResults` receives typed, grouped data and does not fetch or filter it. The temporary fixture belongs to the search module and will be replaced by mock adapters in the next integration step. Search should not depend on domain cards or create a web of internal adapter imports.
 - Notifications own notification state and read/unread behavior; account owns customer identity data. The current header values are temporary presentation content until those capabilities are implemented.
 - Design-system primitives do not import modules. Shared infrastructure does not import modules, pages or application code. New code enters `shared` only when cross-domain reuse is demonstrated.
 
@@ -67,8 +70,8 @@ These are review conventions today, not automatically enforced import rules. Sta
 
 Global foundations remain `.sass`; component styles remain `.module.sass`. Component colors use semantic aliases. The supplied token JSON remains the source for the available palette and scales, while portal-specific semantic choices live in Sass.
 
-Keep `tokens.sass` in `foundations` for now. A separate `tokens/` area becomes useful when generation, multiple themes or distribution requires more than one alias file.
+The current global Sass and token aliases live directly in `design-system/`. A separate `foundations/` or `tokens/` area becomes useful when generation, multiple themes or distribution requires more than one alias file.
 
 ## Next implementation boundary
 
-Create `modules/account/components/CustomerOverviewCard/` for the customer overview, and compose it from `pages/dashboard/DashboardPage.tsx`. Introduce the account API adapter when fetching is implemented. Other modules, routing and shared transport remain deferred until their respective steps.
+Replace the synchronous search preview fixture with module-owned mock adapters, debouncing and concurrent source queries. Introduce domain API adapters when their fetching iteration begins. Routing and shared transport remain deferred until their respective steps.

@@ -82,7 +82,14 @@ A failure in one service must not prevent successful sections from rendering.
 
 ## 6. Global search
 
-Implement one global search field that queries three sources concurrently:
+The first UI slice is complete: a controlled React Aria search field retains the dashboard while empty and replaces it with a single grouped results surface while non-empty. A small synchronous fixture currently provides the VPN review state; it is deliberately separate from the results presentation.
+
+* [x] Render grouped products, knowledge articles and support tickets in one full-width results surface.
+* [x] Support per-source populated, empty, loading and error presentation states.
+* [x] Restore the dashboard when the controlled field is cleared.
+* [x] Cover empty, matching, cleared and non-matching search behavior with focused tests.
+
+The mock-service iteration will replace the fixture with concurrent source queries:
 
 * products;
 * knowledge articles;
@@ -93,11 +100,11 @@ Required behavior:
 * [ ] debounce input by approximately 300 ms;
 * [ ] disable queries for an empty search term;
 * [ ] start all three searches concurrently;
-* [ ] display results grouped by source;
-* [ ] preserve independent loading, empty and error states;
+* [x] display results grouped by source;
+* [x] preserve independent loading, empty and error states;
 * [ ] cancel or supersede obsolete requests;
 * [ ] prevent stale responses from replacing newer results;
-* [ ] provide a polite result-count announcement.
+* [ ] provide a polite result-count announcement after debounced results settle.
 
 Results expand below the search field rather than acting as autocomplete suggestions. At least one documented search term should return results from all three sources.
 
