@@ -1,9 +1,41 @@
+.overlay
+  position: fixed
+  inset: 0
+  z-index: 10
+  background: var(--color-overlay)
+
+.modal
+  position: fixed
+  inset: 0 0 0 auto
+  width: min(100%, 34rem)
+  min-height: 100dvh
+  padding: var(--space-5)
+  overflow-y: auto
+  background: var(--color-background)
+  border-left: 1px solid var(--color-border-default)
+
+.dialog
+  outline: none
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: var(--space-4)
+  margin-bottom: var(--space-4)
+
+.title
+  color: var(--color-text-secondary)
+  font-size: var(--font-size-lg)
+  font-weight: var(--font-weight-semi-bold)
+
 .filters
   display: flex
-  align-items: flex-start
-  gap: 0.25rem
+  gap: var(--space-2)
 
 .filter
+  min-height: 2.75rem
+  padding-inline: var(--space-2)
   border: 0
   border-radius: var(--radius-control)
   background: var(--color-action-ghost)
@@ -15,7 +47,7 @@
   &[data-selected]
     color: var(--color-text-secondary)
     text-decoration: underline
-    text-underline-offset: 0.125rem
+    text-underline-offset: var(--space-1)
 
   &[data-hovered]
     background: var(--color-action-ghost-hover)
@@ -29,7 +61,7 @@
 
 .list
   display: grid
-  gap: 1.5rem
+  gap: var(--space-4)
   margin: 0
   padding: 0
   list-style: none
@@ -38,7 +70,7 @@
 .read
   display: flex
   align-items: flex-start
-  gap: 0.75rem
+  gap: var(--space-3)
   font-size: var(--font-size-md)
   line-height: 1.35
   overflow-wrap: anywhere
@@ -63,12 +95,6 @@
   border-radius: var(--radius-xl)
   flex-shrink: 0
 
-.status
-  position: absolute
-  width: 0.0625rem
-  height: 0.0625rem
-  padding: 0
-  margin: -0.0625rem
-  overflow: hidden
-  clip-path: inset(50%)
-  white-space: nowrap
+@media (max-width: 360px)
+  .modal
+    padding: var(--space-4)
