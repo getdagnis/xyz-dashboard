@@ -1,6 +1,7 @@
 import CustomerOverviewCard from '../../modules/account/components/CustomerOverviewCard/CustomerOverviewCard'
 import RecentNotificationsCard from '../../modules/notifications/components/RecentNotificationsCard/RecentNotificationsCard'
 import GlobalSearch from '../../modules/search/components/GlobalSearch/GlobalSearch'
+import OpenServiceTicketsCard from '../../modules/service-desk/components/OpenServiceTicketsCard/OpenServiceTicketsCard'
 import styles from './DashboardPage.module.sass'
 
 export default function DashboardPage() {
@@ -16,6 +17,7 @@ export default function DashboardPage() {
         <CustomerOverviewCard />
         <RecentNotificationsCard />
       </div>
+      <OpenServiceTicketsCard />
     </div>
   )
 }

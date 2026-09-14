@@ -1,0 +1,54 @@
+.module
+  display: grid
+  gap: var(--space-5)
+
+.tableScroll
+  overflow-x: auto
+
+.table
+  width: 100%
+  min-width: 52rem
+  border-collapse: collapse
+  text-align: left
+
+  th
+    padding: 0 0 var(--space-4)
+    color: var(--color-text-muted)
+    font-size: var(--font-size-xs)
+    font-weight: var(--font-weight-medium)
+    text-transform: uppercase
+
+  td
+    padding: var(--space-4) 0
+    color: var(--color-text-primary)
+    font-size: var(--font-size-md)
+    font-weight: var(--font-weight-medium)
+    vertical-align: middle
+
+  tbody tr + tr td
+    border-top: 1px solid var(--color-border-subtle)
+
+  th:nth-child(1),
+  td:nth-child(1)
+    width: 15%
+
+  th:nth-child(2),
+  td:nth-child(2)
+    width: 32%
+
+  th:nth-child(3),
+  td:nth-child(3)
+    width: 21%
+
+  th:nth-child(4),
+  td:nth-child(4)
+    width: 17%
+
+  th:nth-child(5),
+  td:nth-child(5)
+    width: 15%
+
+.actions
+  display: flex
+  flex-wrap: wrap
+  gap: var(--space-3)

@@ -1,0 +1,37 @@
+.chip
+  display: inline-flex
+  justify-content: center
+  min-width: fit-content
+  border-radius: var(--radius-xl)
+  padding: var(--space-1) var(--space-3)
+  font-size: var(--font-size-sm)
+  font-weight: var(--font-weight-medium)
+  line-height: 1.25
+
+  &[data-tone='warning']
+    background: var(--color-status-in-progress-background)
+    color: var(--color-status-in-progress-text)
+
+  &[data-tone='warning-strong']
+    background: var(--color-priority-medium-background)
+    color: var(--color-priority-medium-text)
+
+  &[data-tone='success']
+    background: var(--color-status-shipped-background)
+    color: var(--color-status-shipped-text)
+
+  &[data-tone='success-strong']
+    background: var(--color-status-delivered-background)
+    color: var(--color-status-delivered-text)
+
+  &[data-tone='danger']
+    background: var(--color-status-delayed-background)
+    color: var(--color-status-delayed-text)
+
+  &[data-tone='danger-strong']
+    background: var(--color-priority-high-background)
+    color: var(--color-priority-high-text)
+
+  &[data-tone='info']
+    background: var(--color-priority-low-background)
+    color: var(--color-priority-low-text)
