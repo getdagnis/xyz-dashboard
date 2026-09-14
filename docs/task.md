@@ -32,7 +32,6 @@ Provide a single, global search input field. As the user types, the system must 
 
 Implement a notification dropdown or panel accessible from the main layout containing:
 
-Sensitivity: Internal
 • An **unread counter badge** that updates reactively.
 
 • A quick action to **mark an individual notification as read** (which immediately updates the global counter).
