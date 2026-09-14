@@ -22,7 +22,7 @@ export default function DashboardPage() {
         <time className={styles.date} dateTime="2026-09-14">
           Monday, 14 September 2026
         </time>
-        <h1>Good morning{customer ? `, ${customer.firstName}` : ''}</h1>
+        <h1 className={styles.title}>Good morning{customer ? `, ${customer.firstName}` : ''}</h1>
         <p className={styles.subtitle}>Here’s the latest activity across your XYZ services</p>
       </header>
       <GlobalSearch value={searchQuery} onChange={setSearchQuery} />

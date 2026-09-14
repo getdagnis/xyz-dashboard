@@ -14,11 +14,11 @@ function GroupContent({ group }: { group: SearchResultGroup }) {
   }
 
   if (group.state === 'error') {
-    return <p className={styles.state}>Unable to load results from this source.</p>;
+    return <p className={styles.state}>Unable to load results from this source</p>;
   }
 
   if (group.state === 'empty' || group.results.length === 0) {
-    return <p className={styles.state}>No results from this source. Try 'VPN'</p>;
+    return <p className={styles.state}>No results from this source. Try searching for “VPN”</p>;
   }
 
   return (
@@ -46,9 +46,9 @@ export default function SearchResults({ query, groups, isSettled }: SearchResult
       </h2>
       <p className={styles.visuallyHidden} role="status" aria-atomic="true">
         {isSettled
-          ? `Search complete. ${resultCount} ${
+          ? `Search complete ${resultCount} ${
               resultCount === 1 ? 'result' : 'results'
-            } found for ${query}.${hasErrors ? ' Some sources could not be loaded.' : ''}`
+            } found for ${query}.${hasErrors ? ' Some sources could not be loaded' : ''}`
           : `Searching for ${query}.`}
       </p>
       {groups.length === 0 ? (

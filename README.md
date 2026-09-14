@@ -52,6 +52,14 @@ The application is organized by portal modules. Shared visual components and tok
 
 **TanStack Query** provides the shared client-side cache for the dashboard mock-service integration and search grouping. Routing, authentication and backend infrastructure are deliberately outside the prototype scope.
 
+## Global search
+
+Search input is debounced by approximately 300 ms before three independent mock-service queries run simultaneously over Products, Knowledge Articles and Support Tickets.
+
+Each source has its own loading, empty, error and result state. TanStack Query provides request cancellation, cache isolation and stale-result protection as the search term changes.
+
+For review, search for `VPN` to see populated results from all three mock data sources.
+
 ## Accessibility
 
 **React Aria Components** provide out-of-box accessible keyboard interaction and focus management for the used regular buttons, state toggle buttons, search, filters and the Notification Center dialog. Native semantic HTML is used for cards, headings, description lists, tables, lists and other static elements.
@@ -61,6 +69,10 @@ Icon-only controls have accessible names, focus is visibly indicated and status 
 **Axe DevTools** were used during development to identify color-contrast and other accessibility issues. Token provided color usage was adjusted throughout the entire development process, as a result the accessibility tested application reports **0 automatic issues** with WCAG 2.1 AA and Best Practices settings enabled.
 
 Automated testing does not replace complete keyboard and screen-reader testing. Reference: [Web Content Accessibility Guidelines](https://www.w3.org/TR/WCAG/)
+
+## Design Tokens
+
+The supplied token package is used as the main reference for the application's colors, spacing, typography and border radiuses. The JSON primitives are mapped as SASS global variables in `src/design-system/tokens.sass`.
 
 ## Run locally
 

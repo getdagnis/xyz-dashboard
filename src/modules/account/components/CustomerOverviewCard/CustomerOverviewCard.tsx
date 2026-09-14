@@ -11,9 +11,12 @@ export default function CustomerOverviewCard() {
       {isError ? <p>Unable to load customer information.</p> : null}
       {customer ? (
         <dl className={styles.details}>
-          <dd>
-            {customer.firstName} {customer.lastName}
-          </dd>
+          <div>
+            <dt>Name</dt>
+            <dd>
+              {customer.firstName} {customer.lastName}
+            </dd>
+          </div>
           <div>
             <dt>Portal role</dt>
             <dd>{customer.portalRole}</dd>

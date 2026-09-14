@@ -14,16 +14,16 @@ describe('SearchResults', () => {
           { id: 'knowledge', label: 'Knowledge articles', state: 'empty', results: [] },
           { id: 'tickets', label: 'Support tickets', state: 'error', results: [] },
         ]}
-        isSettled
+        isSettled={false}
       />,
     );
 
     expect(screen.getByRole('heading', { name: 'Products' })).toBeTruthy();
     expect(screen.getByText('Loading results…')).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Knowledge articles' })).toBeTruthy();
-    expect(screen.getByText('No results from this source.')).toBeTruthy();
+    expect(screen.getByText('No results from this source. Try searching for “VPN”')).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Support tickets' })).toBeTruthy();
-    expect(screen.getByText('Unable to load results from this source.')).toBeTruthy();
-    expect(screen.getByRole('status').textContent).toContain('Search complete.');
+    expect(screen.getByText('Unable to load results from this source')).toBeTruthy();
+    expect(screen.getByRole('status').textContent).toContain('Searching for VPN');
   });
 });

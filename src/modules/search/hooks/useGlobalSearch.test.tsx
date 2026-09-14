@@ -1,6 +1,6 @@
 import { createElement, type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, cleanup, renderHook, waitFor } from '@testing-library/react';
+import { act, cleanup, renderHook } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { useGlobalSearch } from './useGlobalSearch';
@@ -47,16 +47,15 @@ describe('useGlobalSearch', () => {
       await vi.advanceTimersByTimeAsync(1);
     });
 
-    // all three requests have started concurrently
+    // debounce elapsed --> all three requests are now active
     expect(result.current.groups.every((group) => group.state === 'loading')).toBe(true);
 
     await act(async () => {
-      await vi.advanceTimersByTimeAsync(2000);
+      // 2  mock latency + tiny flush for query notifications.
+      await vi.advanceTimersByTimeAsync(1001);
     });
 
-    await waitFor(() => {
-      expect(result.current.groups.every((group) => group.state === 'results')).toBe(true);
-    });
+    expect(result.current.groups.every((group) => group.state === 'results')).toBe(true);
 
     expect(result.current.isSettled).toBe(true);
   });

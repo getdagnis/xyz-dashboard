@@ -39,7 +39,7 @@ export default function AppHeader({ unreadCount, onOpenNotifications }: AppHeade
           </IconButton>
           <div className={styles.profile}>
             <span className={styles.avatar} aria-hidden="true">
-              {initials ?? '…'}
+              {initials}
             </span>
 
             <div className={styles.details}>
