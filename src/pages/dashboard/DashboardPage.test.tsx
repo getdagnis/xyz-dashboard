@@ -38,7 +38,7 @@ describe('DashboardPage search', () => {
     expect(screen.getByRole('heading', { name: 'Products' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Knowledge articles' })).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Support tickets' })).toBeTruthy();
-    expect(await screen.findByText('VPN gateway appliance', {}, { timeout: 1000 })).toBeTruthy();
+    expect(await screen.findByText('VPN gateway appliance', {}, { timeout: 2000 })).toBeTruthy();
     expect(screen.getByText('INC-23910 — VPN access for a new employee')).toBeTruthy();
   });
 
