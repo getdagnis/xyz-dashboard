@@ -1,0 +1,52 @@
+.button
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  min-height: 2.75rem
+  padding: 0.625rem var(--space-inline)
+  border: 1px solid var(--color-border-default)
+  border-radius: var(--radius-control)
+  font-size: var(--font-size-md)
+  font-weight: var(--font-weight-medium)
+  cursor: pointer
+
+  &[data-variant='primary']
+    background: var(--color-action-primary)
+    color: var(--color-text-inverse)
+    border-color: var(--color-action-primary)
+
+    &[data-hovered]
+      background: var(--color-action-primary-hover)
+      border-color: var(--color-action-primary-hover)
+
+    &[data-pressed]
+      background: var(--color-action-primary-pressed)
+      border-color: var(--color-action-primary-pressed)
+      box-shadow: inset 0 0 0 1px var(--color-text-inverse)
+
+    &[data-disabled]
+      background: var(--color-action-primary-disabled)
+      border-color: var(--color-action-primary-disabled)
+
+  &[data-variant='secondary']
+    background: var(--color-action-secondary)
+    color: var(--color-text-primary)
+
+    &[data-hovered]
+      background: var(--color-action-secondary-hover)
+
+    &[data-pressed]
+      background: var(--color-action-secondary-pressed)
+
+    &[data-disabled]
+      background: var(--color-action-secondary-disabled)
+      border-color: var(--color-border-subtle)
+
+  &[data-focus-visible]
+    outline: var(--focus-width) var(--focus-style) var(--color-focus)
+    outline-offset: var(--focus-offset)
+
+  &[data-disabled]
+    color: var(--color-text-disabled)
+    box-shadow: none
+    cursor: default

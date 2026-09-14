@@ -1,0 +1,92 @@
+.field
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: var(--space-inline)
+  min-width: 0
+  padding: 0.5rem var(--space-inline)
+  background: var(--color-surface)
+  border: 1px solid var(--color-border-default)
+  border-radius: var(--radius-surface)
+
+  &:focus-within
+    outline: var(--focus-width) var(--focus-style) var(--color-focus)
+    outline-offset: var(--focus-offset)
+
+  &[data-empty] .clear
+    display: none
+
+.control
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  width: 100%
+  max-width: 100%
+  min-width: 0
+
+.input
+  flex: 1
+  min-width: 0
+  min-height: 2.75rem
+  padding: 0
+  border: 0
+  outline: none
+  background: var(--color-action-ghost)
+  color: var(--color-text-primary)
+  font-size: var(--font-size-lg)
+
+  &::placeholder
+    color: var(--color-text-control)
+    font-weight: var(--font-weight-medium)
+    opacity: 1
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration
+    appearance: none
+
+.clear
+  min-height: 2.75rem
+  padding: 0.5rem
+  border: 0
+  border-radius: var(--radius-control)
+  background: var(--color-action-ghost)
+  color: var(--color-text-control)
+  font-size: var(--font-size-sm)
+  cursor: pointer
+
+  &[data-hovered]
+    background: var(--color-action-ghost-hover)
+
+  &[data-pressed]
+    background: var(--color-action-ghost-pressed)
+
+  &[data-focus-visible]
+    outline: var(--focus-width) var(--focus-style) var(--color-focus)
+    outline-offset: var(--focus-offset)
+
+.details
+  display: inline-flex
+  align-items: center
+  gap: 0.75rem
+  flex-shrink: 0
+
+.description
+  color: var(--color-text-muted)
+  font-size: var(--font-size-sm)
+
+.icon
+  width: 1.5rem
+  height: 1.5rem
+  flex-shrink: 0
+  color: var(--color-text-control)
+
+@media (max-width: 700px)
+  .control
+    flex-wrap: wrap
+
+  .input
+    flex-basis: 100%
+
+  .details
+    margin-inline-start: auto
+    flex-shrink: 1

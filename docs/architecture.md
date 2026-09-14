@@ -41,8 +41,7 @@ src/
       components/NotificationCenter/
     search/
       components/GlobalSearch/
-  design-system/
-    foundations/                  # Global Sass and current token aliases
+  design-system/                  # Global Sass and current token aliases
     components/                   # Reusable primitives as they appear
   shared/
     api/                          # Shared HTTP transport when needed
